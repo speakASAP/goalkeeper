@@ -60,6 +60,21 @@ Telegram webhook configuration is also documented in `.env.example`:
 - `TELEGRAM_WEBHOOK_SECRET` optionally validates Telegram's webhook secret header.
 - `TELEGRAM_ALLOWED_USER_IDS` is a comma-separated allowlist of approved Telegram user IDs.
 
+
+## Ecosystem Integration
+
+GoalKeeper now has Kubernetes onboarding artifacts for the Alfares/Statex ecosystem:
+
+- service name: `goalkeeper`;
+- public URL: `https://goalkeeper.alfares.cz`;
+- internal URL: `http://goalkeeper.statex-apps.svc.cluster.local:3392`;
+- deployment script: `scripts/deploy.sh`;
+- manifests: `k8s/`;
+- Vault path: `secret/prod/goalkeeper`;
+- integration health: `GET /health/integrations`.
+
+See [docs/ECOSYSTEM_INTEGRATION.md](docs/ECOSYSTEM_INTEGRATION.md) for shared auth, notifications, database-server, docs-rag, logging, monitoring, Vault, and newcomer onboarding details.
+
 ## Hardening And Deployment Readiness
 
 GoalKeeper includes local hardening helpers for idempotency, rate-limit decisions, destructive-action confirmation, redacted structured logs, backup/export manifests, deployment-readiness summaries, and smoke-test summaries. Telegram command parsing and renderers are prepared for `/admin`, `/backup_export`, `/smoke_test`, and `/deployment_readiness`; these surfaces summarize intent and required approvals but do not run destructive or production actions by themselves.

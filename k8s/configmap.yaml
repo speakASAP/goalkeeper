@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: goalkeeper-config
+  namespace: statex-apps
+  labels:
+    app: goalkeeper
+    managed-by: k8s-migration
+data:
+  NODE_ENV: "production"
+  SERVICE_NAME: "goalkeeper"
+  DOMAIN: "goalkeeper.alfares.cz"
+  PUBLIC_BASE_URL: "https://goalkeeper.alfares.cz"
+  HOST: "0.0.0.0"
+  PORT: "3392"
+  LOG_LEVEL: "info"
+  AUTH_SERVICE_URL: "http://auth-microservice.statex-apps.svc.cluster.local:3370"
+  AUTH_SERVICE_PUBLIC_URL: "https://auth.alfares.cz"
+  NOTIFICATIONS_SERVICE_URL: "http://notifications-microservice.statex-apps.svc.cluster.local:3368"
+  DOCS_RAG_SERVICE_URL: "http://docs-rag-microservice.statex-apps.svc.cluster.local:3397"
+  LOGGING_SERVICE_URL: "http://logging-microservice.statex-apps.svc.cluster.local:3367"
+  MONITORING_SERVICE_URL: "http://monitoring-microservice.statex-apps.svc.cluster.local:3395"
+  DB_HOST: "db-server-postgres"
+  DB_PORT: "5432"
+  DB_USER: "dbadmin"
+  DB_NAME: "goalkeeper"
+  REDIS_HOST: "db-server-redis"
+  REDIS_PORT: "6379"
