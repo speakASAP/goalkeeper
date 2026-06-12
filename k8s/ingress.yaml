@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: goalkeeper
+  namespace: statex-apps
+  labels:
+    app: goalkeeper
+    managed-by: k8s-migration
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - goalkeeper.alfares.cz
+      secretName: goalkeeper-tls
+  rules:
+    - host: goalkeeper.alfares.cz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: goalkeeper
+                port:
+                  number: 3392

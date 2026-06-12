@@ -9,10 +9,19 @@ const config: AppConfig = {
   port: 3000,
   logLevel: "silent",
   nodeEnv: "test",
+  serviceName: "goalkeeper",
   telegram: {
     botToken: "fake-token-for-tests",
     webhookSecret: "secret-for-tests",
     allowedUserIds: [101]
+  },
+  ecosystem: {
+    database: {
+      port: 5432
+    },
+    redis: {
+      port: 6379
+    }
   }
 };
 

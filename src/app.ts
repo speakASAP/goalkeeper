@@ -1,6 +1,7 @@
 import Fastify, { type FastifyInstance } from "fastify";
 import { loadConfig, type AppConfig } from "./config/env.js";
 import { registerDashboardRoutes } from "./modules/dashboard/routes.js";
+import { registerEcosystemRoutes } from "./modules/ecosystem/routes.js";
 import { registerTelegramRoutes } from "./modules/telegram/routes.js";
 
 export interface HealthResponse {
@@ -25,6 +26,7 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     timestamp: new Date().toISOString()
   }));
 
+  registerEcosystemRoutes(app, { config: config.ecosystem });
   registerDashboardRoutes(app);
   registerTelegramRoutes(app, { config: config.telegram });
 

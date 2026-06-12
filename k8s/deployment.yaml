@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goalkeeper
+  namespace: statex-apps
+  labels:
+    app: goalkeeper
+    managed-by: k8s-migration
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: goalkeeper
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: goalkeeper
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/health"
+        prometheus.io/port: "3392"
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      initContainers:
+        - name: wait-postgres
+          image: busybox:1.36
+          command: ["sh", "-c", "until nc -z db-server-postgres 5432; do echo waiting for postgres; sleep 2; done"]
+        - name: wait-redis
+          image: busybox:1.36
+          command: ["sh", "-c", "until nc -z db-server-redis 6379; do echo waiting for redis; sleep 2; done"]
+      containers:
+        - name: app
+          image: localhost:5000/goalkeeper:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3392
+              name: http
+          envFrom:
+            - configMapRef:
+                name: goalkeeper-config
+            - secretRef:
+                name: goalkeeper-secret
+          env:
+            - name: HOME
+              value: /home/ssf
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 3392
+            failureThreshold: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3392
+            periodSeconds: 30
+            failureThreshold: 3
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3392
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+            timeoutSeconds: 5
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "50m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          volumeMounts:
+            - name: github-repos
+              mountPath: /home/ssf/Documents/Github
+            - name: kubeconfig
+              mountPath: /home/ssf/.kube
+              readOnly: true
+      volumes:
+        - name: github-repos
+          hostPath:
+            path: /home/ssf/Documents/Github
+            type: Directory
+        - name: kubeconfig
+          hostPath:
+            path: /home/ssf/.kube
+            type: Directory
