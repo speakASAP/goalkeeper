@@ -32,7 +32,7 @@ test("GET /dashboard/state returns parsed implementation state", async () => {
   assert.equal(body.currentStatus.activeGoal, "none");
   assert.ok(body.roadmap.length >= 10);
   assert.ok(body.commandSurface.includes("/deployment_readiness"));
-  assert.ok(body.nextAction.includes("record the production base URL"));
+  assert.ok(body.nextAction.includes("All implementation goals through Goal 11 are complete"));
 });
 
 test("buildDashboardState extracts roadmap and validation evidence from markdown", () => {

@@ -29,8 +29,8 @@ GOALKEEPER ORCHESTRATOR: implement goal number 1
 ## Current Status
 
 - Active goal: none
-- Active branch: `feature/gk-ecosystem-integration`
-- Current wave: Wave 9 - Ecosystem Integration complete
+- Active branch: `main`
+- Current wave: Wave 9 - Ecosystem Integration merged
 - Completed goals: 01 Foundation, 02 Domain Persistence, 03 Telegram Control Plane MVP, 04 Intent Capture Approval And Memory, 05 Planning And Task Creation, 06 IPS Gates Context Packages And Coding Prompts, 07 Executor Orchestration Worker Loop And Routing, 08 Validation Retry And Completion Reports, 09 Overnight Self-Improvement, 10 Hardening Deployment, 11 Ecosystem Integration And Kubernetes Onboarding
 - Running goals: none
 - Blocked goals: none
@@ -42,7 +42,7 @@ GOALKEEPER ORCHESTRATOR: implement goal number 1
 - Process gates: `docs/process/OPERATIONAL_GATES.md`
 - Project invariants: `docs/governance/PROJECT_INVARIANTS.md`
 - Language policy: English-only documentation, prompts, reports, comments, examples, Telegram copy, and user-facing text
-- Last verified implementation commits: Goal 03 Telegram Control Plane MVP committed as `0e6bd13` on `feature/gk-goal-03-telegram-control-plane`; Goal 04 Intent Capture Approval And Memory committed as `34eda95` on `feature/gk-goal-04-intent-memory`; Wave 3 integration committed as `da0f667` on `integration/gk-merge-goals` and merged to `main` as `eb03d95`; Goal 05 Planning And Task Creation committed as `de2ecaa` on `feature/gk-goal-05-planning-task-creation`; Goal 06 IPS Gates Context Packages And Coding Prompts committed as `923ffb2` on `feature/gk-goal-06-ips-gates`; Goal 07 Executor Orchestration Worker Loop And Routing committed as `4e52d13` on `feature/gk-goal-07-executor-orchestration`; Goal 08 Validation Retry And Completion Reports completed on `feature/gk-goal-08-validation-reports`; Goal 09 Overnight Self-Improvement completed on `feature/gk-goal-09-overnight-self-improvement`; Goal 10 Hardening Deployment committed as `eb84129` on `feature/gk-goal-10-hardening-deployment`; Goal 11 Ecosystem Integration committed as `56a7fbb` with deployment fixes through `68ea858` on `feature/gk-ecosystem-integration`
+- Last verified implementation commits: Goal 03 Telegram Control Plane MVP committed as `0e6bd13` on `feature/gk-goal-03-telegram-control-plane`; Goal 04 Intent Capture Approval And Memory committed as `34eda95` on `feature/gk-goal-04-intent-memory`; Wave 3 integration committed as `da0f667` on `integration/gk-merge-goals` and merged to `main` as `eb03d95`; Goal 05 Planning And Task Creation committed as `de2ecaa` on `feature/gk-goal-05-planning-task-creation`; Goal 06 IPS Gates Context Packages And Coding Prompts committed as `923ffb2` on `feature/gk-goal-06-ips-gates`; Goal 07 Executor Orchestration Worker Loop And Routing committed as `4e52d13` on `feature/gk-goal-07-executor-orchestration`; Goal 08 Validation Retry And Completion Reports completed on `feature/gk-goal-08-validation-reports`; Goal 09 Overnight Self-Improvement completed on `feature/gk-goal-09-overnight-self-improvement`; Goal 10 Hardening Deployment committed as `eb84129` on `feature/gk-goal-10-hardening-deployment`; Goal 11 Ecosystem Integration committed as `56a7fbb` with deployment fixes through `cf05219` on `feature/gk-ecosystem-integration` and merged to `main` as `c1d49b6`
 - Production deployment status: GoalKeeper deployed successfully to Kubernetes at `https://goalkeeper.alfares.cz`; public smoke and integration health passed
 - Commit policy: every goal must finish with all goal changes committed and a clean working tree before the next goal starts
 
@@ -119,6 +119,7 @@ Do not paste full worker logs into this file. Compress each worker result into n
 Append newest entries at the top.
 
 ```text
+2026-06-12: Goal 11 merge checkpoint completed on `main`. Feature branch `feature/gk-ecosystem-integration` is contained in `main` via merge commit `c1d49b6`; remote `main` is aligned with `origin/main`. Merge validation started with `npm test`; it initially exposed a stale dashboard test expectation that still referenced the pre-Goal-11 production URL blocker, so the checkpoint updates the state file and dashboard expectation to the post-merge implementation state. Validation after correction: npm test (99 tests), npm run typecheck, npm run lint, npm run build, git diff --check, strict_doc_audit, Goal 11 pre_coding_gate, and deployment_readiness_gate passed.
 2026-06-12: Goal 11 Ecosystem Integration deployed on feature/gk-ecosystem-integration. Implementation commit: `56a7fbb`; deployment manifest fixes through `68ea858`. Provisioned `secret/prod/goalkeeper` in Vault without printing secret values, deployed GoalKeeper to Kubernetes, verified ExternalSecret sync, rollout, public smoke at `https://goalkeeper.alfares.cz/health`, and public `/health/integrations`. Monitoring registry commit `32922a5` was deployed from a clean worktree; monitoring deployment passed and registry verification reported 55 services. Shared `ECOSYSTEM_MAP.md` was updated but left uncommitted per shared repo rules.
 2026-06-12: Production post-deploy smoke verification attempted. Added `reports/validation/production-deployment-smoke-2026-06-12.md` and updated the deployment approval packet to `post_deploy_smoke_blocked`. Read-only checks found that `/home/ssf/Documents/Github/goalkeeper` does not exist on `alfares`, no process command containing `goalkeeper` is visible, `https://goalkeeper.alfares.cz/health` returns 404, and `https://runlayer.alfares.cz/health` returns `service: runlayer`. No production changes or destructive commands were run. Next evidence needed: record the actual GoalKeeper production base URL or expose the deployed service at a known URL, then run `scripts/smoke_test.sh <production-base-url>`.
 2026-06-12: Production deployment owner report recorded after Goal 10 approval packet. Owner reported: "Deployed. Seems it is everything is okay." Updated `reports/validation/production-deployment-approval-2026-06-12.md` to `owner_reported_deployed`. Independent production smoke test was not run because no production base URL is recorded in the repository. Next evidence needed: record production base URL and run `scripts/smoke_test.sh <production-base-url>`.
@@ -163,20 +164,12 @@ Next command:
 
 ## Next Action
 
-Goal 11 is deployed and smoke verified. Next action is to merge `feature/gk-ecosystem-integration` into `main` when owner review is complete, then keep monitoring/shared repositories aligned:
+All implementation goals through Goal 11 are complete, deployed, smoke verified, and merged to `main`.
+
+Next operational action is to keep the deployed service and ecosystem records aligned:
 
 ```text
-GOALKEEPER ORCHESTRATOR: merge Goal 11 ecosystem integration
-```
-
-Source documents:
-
-```text
-implementation-goals/GOAL-11-ecosystem-integration.md
-implementation-goals/GOAL-11-ecosystem-integration.validation-report.md
-docs/ECOSYSTEM_INTEGRATION.md
-docs/DEPLOYMENT_RUNBOOK.md
-docs/IPS_INTEGRATION.md
+GOALKEEPER ORCHESTRATOR: monitor GoalKeeper production health and shared ecosystem alignment
 ```
 
 Runtime URLs:
