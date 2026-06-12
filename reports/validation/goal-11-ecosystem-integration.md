@@ -32,3 +32,12 @@ No real secret values are recorded here. Vault path and property names only.
 ## Deployment Status
 
 Live Kubernetes deployment was not applied because required Vault metadata does not exist yet. This prevents a partial broken rollout and preserves the Vault/ESO contract.
+
+## Deployment Evidence Update
+
+- Vault path `secret/prod/goalkeeper` was created with required properties; values were not printed.
+- GoalKeeper Kubernetes deployment rolled out successfully.
+- Public smoke passed for `https://goalkeeper.alfares.cz/health`.
+- Public integration health returned `status: ok`.
+- Monitoring deployment from commit `32922a5` completed successfully and registry verification reported 55 services.
+- Deployment manifest follow-up commits: `70285fc`, `954cf67`, `68ea858`.

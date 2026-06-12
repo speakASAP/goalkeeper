@@ -80,7 +80,7 @@ Deployment script uses the current Git commit SHA as the default image tag, appl
 
 ## Failed Criteria
 
-Live Kubernetes deployment is blocked because Vault has no `secret/prod/goalkeeper` metadata yet. The deployment script was not run to avoid applying resources that would fail ExternalSecret readiness.
+Live Kubernetes deployment completed after provisioning `secret/prod/goalkeeper` and removing optional startup dependency gates that were blocking startup before the current runtime opens database or Redis connections.
 
 ## Deviations
 
@@ -89,3 +89,12 @@ Docs RAG was inspected through its repository and usage docs instead of queried 
 ## Recommendation
 
 Create the required Vault properties at `secret/prod/goalkeeper`, then run `./scripts/deploy.sh` from `/home/ssf/Documents/Github/goalkeeper`. After rollout, deploy the monitoring registry/config changes and run public smoke validation against `https://goalkeeper.alfares.cz/health`.
+
+## Deployment Evidence Update
+
+- Vault path `secret/prod/goalkeeper` was created with required properties; values were not printed.
+- GoalKeeper Kubernetes deployment rolled out successfully.
+- Public smoke passed for `https://goalkeeper.alfares.cz/health`.
+- Public integration health returned `status: ok`.
+- Monitoring deployment from commit `32922a5` completed successfully and registry verification reported 55 services.
+- Deployment manifest follow-up commits: `70285fc`, `954cf67`, `68ea858`.
