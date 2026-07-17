@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import type { FastifyInstance, FastifyReply } from "fastify";
+import { FAVICON_ICO } from "./favicon.assets.js";
 
 export interface DashboardRoadmapItem {
   goal: string;
@@ -47,6 +48,13 @@ export function registerDashboardRoutes(app: FastifyInstance): void {
 
   app.get("/dashboard", async (_request, reply) => {
     return sendHtml(reply, DASHBOARD_HTML);
+  });
+
+  app.get("/favicon.ico", async (_request, reply) => {
+    return reply
+      .header("cache-control", "public, max-age=604800")
+      .type("image/x-icon")
+      .send(FAVICON_ICO);
   });
 
   app.get<{ Reply: DashboardState }>("/dashboard/state", async () => {
