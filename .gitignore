@@ -14,6 +14,8 @@
 .env
 .env.*
 !.env.example
+env
+ENV
 
 # Logs
 *.log
@@ -37,6 +39,8 @@ __pycache__/
 .ruff_cache/
 .venv/
 venv/
+.venv
+venv
 
 # Coverage and temporary files
 coverage/
@@ -46,17 +50,3 @@ temp/
 *.bak*
 *backup*
 *bck*
-.env
-.venv
-venv
-env
-ENV
-.env.local
-.env.development
-.env.production
-.env.test
-.env.test.local
-.env.production.local
-.env.development.local
-.env.test.local
-
