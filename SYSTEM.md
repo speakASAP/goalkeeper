@@ -22,4 +22,36 @@ Stage: implementation foundation with Kubernetes onboarding artifacts present.
 
 ## Known Issues
 
-- [MISSING: repo-local STATE.json or equivalent compact status file]
+- No repository-defined repo-local STATE.json or equivalent compact status file
+
+## Purpose
+A server-side system that preserves owner intent through planning, execution, validation, and reporting across multiple executor adapters.
+
+## Responsibilities
+Provide the behavior and runtime described by the tracked project documentation.
+
+## Non-Responsibilities
+Do not add integrations, persistence, or product scope not declared by repository sources.
+
+## Inputs
+Inputs are the browser, runtime, and configuration inputs described in existing project sources.
+
+## Outputs
+Outputs are the user-visible or operational results described in existing project sources.
+
+## Dependencies
+TypeScript Fastify service at goalkeeper.alfares.cz with declared PostgreSQL, Redis, notifications, logging, docs-RAG, monitoring, and Vault-backed runtime integrations.
+
+## Upstream Traceability
+The approved business baseline and vision define this system’s intent.
+
+## Downstream Artifacts
+The integration contract and bootstrap chain record planning evidence.
+
+## Validation Criteria
+Run the IPS planning validator and applicable existing project checks.
+
+## Open Questions
+No new open question is asserted by this documentation-only adoption.
+Status: reviewed
+completeness_level: complete

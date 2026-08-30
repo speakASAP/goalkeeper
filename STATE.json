@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "project": "goalkeeper",
+  "lifecycle": "documented",
+  "health": "documented-runtime",
+  "activeTask": "No active IPS adoption task.",
+  "lastUpdated": "2026-08-30",
+  "deployment": {
+    "status": "repository-defined",
+    "target": "TypeScript Fastify service at goalkeeper.alfares.cz with declared PostgreSQL, Redis, notifications, logging, docs-RAG, monitoring, and Vault-backed runtime integrations."
+  },
+  "blockers": [],
+  "followUps": [
+    "Owner-approved work must begin with a linked IPS task."
+  ]
+}

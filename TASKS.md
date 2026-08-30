@@ -14,3 +14,18 @@
 
 - [x] 2026-07-05 TASK-GK-001: Synced compact root queue with authoritative implementation state; no active GoalKeeper implementation or blocker lanes remain in checked-in repo state.
 - [x] 2026-06-21 Added `BUSINESS.md`, `SYSTEM.md`, and `TASKS.md` to restore agent-doc quartet coverage.
+
+## Active
+No active IPS adoption implementation task remains after this documentation alignment.
+
+## Ready Next
+Future owner-approved work requires a new linked task.
+
+## Blocked
+No adoption blocker is recorded.
+
+## Completed
+TASK-001 completed the IPS adoption profile.
+
+## Handoff
+Begin future work with approved intent and a complete IPS task chain.

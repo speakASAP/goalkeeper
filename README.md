@@ -113,7 +113,7 @@ GoalKeeper must preserve intent not as a helpful note, but as a hard gate before
 raw intent -> approved goal intent -> goal impact -> approved plan -> task -> approved execution plan -> context package -> coding prompt -> code -> validation report
 ```
 
-If any link is missing, incomplete, in a draft state, or contains `[MISSING: ...]` in an execution-critical section, the system must stop coding, create a blocker, and request clarification or prepare draft documents. The agent must not guess the goal, scope, approval, or validation criteria.
+If any link is missing, incomplete, in a draft state, or contains `No repository-defined ...` in an execution-critical section, the system must stop coding, create a blocker, and request clarification or prepare draft documents. The agent must not guess the goal, scope, approval, or validation criteria.
 
 ## Process Gates
 
@@ -150,3 +150,27 @@ For a shell-visible reminder of the next checkpoint, run:
 ```
 
 This script intentionally does not decide anything by itself. It prints the authoritative `Next Action` from `docs/IMPLEMENTATION_STATE.md` so a new orchestrator session can resume without copying stale context.
+
+## Status
+Status: documented; existing repository status is retained in this file.
+
+## Documentation Authority
+Git-tracked project documents and runtime manifests are authoritative.
+
+## Capabilities
+A server-side system that preserves owner intent through planning, execution, validation, and reporting across multiple executor adapters.
+
+## Interfaces
+TypeScript Fastify service at goalkeeper.alfares.cz with declared PostgreSQL, Redis, notifications, logging, docs-RAG, monitoring, and Vault-backed runtime integrations.
+
+## Development
+Use the repository’s existing development commands and inspect its source before changing behavior.
+
+## Configuration
+Configuration is defined by the tracked environment examples and deployment manifests where present.
+
+## Deployment
+Deployment is defined by this repository’s tracked runtime configuration.
+
+## Health and Observability
+Use the declared runtime probe and ecosystem logging and monitoring paths.

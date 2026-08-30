@@ -129,3 +129,21 @@ production deployment approval
 ```
 
 Ask the user only when a decision cannot be safely inferred from the docs and current repository state.
+
+## Required Reading
+Read `BUSINESS.md`, `SYSTEM.md`, `TASKS.md`, `STATE.json`, runtime manifests, and numbered IPS artifacts before work.
+
+## Authority
+Git-tracked repository contracts are authoritative; protected intent needs owner approval.
+
+## Intent Preservation System
+Preserve Vision to Goal Impact to System to Feature to Task to Execution Plan to Coding Prompt to Code to Validation.
+
+## Safety and Operations
+Do not expose secrets or alter deployment policy outside pre-existing authorization.
+
+## Project-Specific Rules
+Keep changes within the documented Telegram-first project operating system scope and runtime boundaries.
+
+## Required Final Report
+Report changed files, validation evidence, debt, blockers, deviations, and next action.
