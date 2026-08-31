@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "project": "goalkeeper",
-  "lifecycle": "documented",
-  "health": "documented-runtime",
+  "lifecycle": "retired",
+  "health": "retired",
   "activeTask": "No active IPS adoption task.",
   "lastUpdated": "2026-08-30",
   "deployment": {
@@ -18,11 +18,11 @@
   "service": {
     "name": "goalkeeper",
     "kind": "orchestrator",
-    "lifecycle": "documented",
-    "deployment": "kubernetes"
+    "lifecycle": "retired",
+    "deployment": "none"
   },
   "planning": {
-    "status": "ready",
+    "status": "retired",
     "active_goal_ids": [],
     "next_ready_goal_ids": [],
     "blocked_goal_ids": [],

@@ -1,3 +1,4 @@
+# RETIRED — Goalkeeper was decommissioned on 2026-08-31. This repository retains planning and validation history only; it has no runtime, deployment manifests, or supported application code. RunLayer is the canonical project/goals/tasks/execution system.
 # Agent Operations
 
 This repository follows the company Cross-Agent Automation Standard from the Intent Preservation System.
