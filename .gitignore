@@ -50,3 +50,11 @@ temp/
 *.bak*
 *backup*
 *bck*
+
+# Secret-blocking baseline (required by shared pre-commit hook)
+k8s/secret.yaml
+secrets/
+keys/
+*.pem
+*.key
+*private*
